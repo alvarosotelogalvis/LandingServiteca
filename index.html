@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicarmelo - Calidad y Servicio Automotriz en Sabaneta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary: #0054ac;
+            --primary-dark: #003d7a;
+            --accent: #f5a623;
+            --dark: #1a1a2e;
+            --text: #333;
+            --text-light: #777;
+            --bg-light: #f8f9fa;
+            --white: #fff;
+            --font-body: 'Lato', Arial, Helvetica, sans-serif;
+            --font-heading: 'Poppins', Arial, Helvetica, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* TOP BAR */
+        .top-bar {
+            background: var(--primary);
+            color: var(--white);
+            font-size: 13px;
+            padding: 10px 0;
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .top-bar a {
+            color: rgba(255, 255, 255, 0.85);
+            transition: color 0.3s;
+        }
+
+        .top-bar a:hover {
+            color: #fff;
+        }
+
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .top-bar-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .top-bar-right .social-icon {
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            transition: background 0.3s;
+            font-size: 14px;
+        }
+
+        .top-bar-right .social-icon:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* HEADER */
+        .header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 22px;
+            font-weight: 900;
+            font-family: var(--font-heading);
+        }
+
+        .logo-text {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        .logo-sub {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            display: block;
+            margin-top: -2px;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav a {
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            border-radius: 6px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            color: var(--primary);
+            background: rgba(0, 84, 172, 0.06);
+        }
+
+        .nav .has-dropdown {
+            position: relative;
+        }
+
+        .nav .has-dropdown .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            min-width: 220px;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s;
+            padding: 8px 0;
+            z-index: 100;
+        }
+
+        .nav .has-dropdown:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav .dropdown a {
+            display: block;
+            padding: 8px 20px;
+            font-weight: 400;
+            border-radius: 0;
+            font-size: 13px;
+        }
+
+        .nav .dropdown a:hover {
+            background: rgba(0, 84, 172, 0.06);
+            color: var(--primary);
+        }
+
+        .nav .dropdown a::after {
+            display: none;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-actions a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s;
+            color: var(--text);
+            font-size: 18px;
+            position: relative;
+        }
+
+        .header-actions a:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .header-actions .badge {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            background: var(--accent);
+            color: var(--white);
+            font-size: 9px;
+            font-weight: 700;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-login {
+            padding: 8px 18px;
+            border: 2px solid var(--primary);
+            border-radius: 25px;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.3s;
+            background: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-login:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+            padding: 8px;
+        }
+
+        /* HERO SLIDER */
+        .hero-slider {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+        }
+
+        .hero-slide:nth-child(1) {
+            background-image: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+
+        .hero-slide:nth-child(2) {
+            background-image: linear-gradient(135deg, #0f3460 0%, #533483 50%, #833ca3 100%);
+        }
+
+        .hero-slide:nth-child(3) {
+            background-image: linear-gradient(135deg, #0d7377 0%, #1abc9c 50%, #16a085 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--white);
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.15;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .hero-content .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-body);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            background: #e09515;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(245, 166, 35, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 3;
+        }
+
+        .slider-dots button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 0;
+        }
+
+        .slider-dots button.active {
+            background: var(--white);
+            border-color: var(--white);
+        }
+
+        /* SECTION TITLE */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title .tag {
+            display: inline-block;
+            background: rgba(0, 84, 172, 0.08);
+            color: var(--primary);
+            padding: 5px 18px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .section-title h2 {
+            font-family: var(--font-heading);
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* BLOG SECTION */
+        .blog-section {
+            padding: 80px 0;
+            background: var(--bg-light);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 25px;
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-card-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .blog-card-img .cat-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--primary);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .blog-card-body {
+            padding: 25px;
+        }
+
+        .blog-card-body .date {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .blog-card-body h3 {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .blog-card-body p {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .blog-card-body .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 13px;
+            margin-top: 12px;
+            transition: gap 0.3s;
+        }
+
+        .blog-card-body .read-more:hover {
+            gap: 10px;
+        }
+
+        /* SERVICES SECTION */
+        .services-section {
+            padding: 80px 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 30px rgba(0, 84, 172, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .service-card .icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(0, 84, 172, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+            font-size: 30px;
+            color: var(--primary);
+        }
+
+        .service-card h3 {
+            font-family: var(--font-heading);
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .service-card .category {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .service-card .price-label {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .service-card .btn-service {
+            padding: 10px 24px;
+            border-radius: 25px;
+            background: var(--primary);
+            color: var(--white);
+            font-weight: 600;
+            font-size: 13px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .service-card .btn-service:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* TESTIMONIALS */
+        .testimonials-section {
+            padding: 80px 0;
+            background: var(--dark);
+            color: var(--white);
+        }
+
+        .testimonials-section .section-title h2 {
+            color: var(--white);
+        }
+
+        .testimonials-section .section-title p {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .testimonials-section .tag {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .testimonial-card .stars {
+            color: var(--accent);
+            font-size: 16px;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .testimonial-card blockquote {
+            font-size: 15px;
+            line-height: 1.7;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 20px;
+        }
+
+        .testimonial-card .author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-card .author-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--white);
+        }
+
+        .testimonial-card .author-info strong {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .testimonial-card .author-info span {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 60px 0;
+            background: var(--primary);
+            text-align: center;
+            color: var(--white);
+        }
+
+        .cta-section h2 {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .cta-section p {
+            font-size: 16px;
+            opacity: 0.85;
+            margin-bottom: 25px;
+        }
+
+        .cta-section .btn {
+            background: var(--accent);
+            color: var(--dark);
+            font-size: 16px;
+            padding: 16px 40px;
+        }
+
+        .cta-section .btn:hover {
+            background: #e09515;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(245, 166, 35, 0.4);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer h4 {
+            font-family: var(--font-heading);
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer p {
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .footer .contact-info {
+            list-style: none;
+        }
+
+        .footer .contact-info li {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .footer .contact-info li .icon {
+            flex-shrink: 0;
+            color: var(--accent);
+        }
+
+        .footer .footer-links {
+            list-style: none;
+        }
+
+        .footer .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer .footer-links a {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 13px;
+        }
+
+        .footer-bottom .social-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-bottom .social-links a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .footer-bottom .social-links a:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* WHATSAPP FLOAT */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 999;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #25d366;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .section-title h2 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                border-top: 1px solid #eee;
+            }
+
+            .nav.open {
+                display: flex;
+            }
+
+            .nav .has-dropdown .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                padding-left: 20px;
+                display: none;
+            }
+
+            .nav .has-dropdown.open .dropdown {
+                display: block;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero-slider {
+                height: 400px;
+            }
+
+            .hero-content h1 {
+                font-size: 28px;
+            }
+
+            .hero-content p {
+                font-size: 15px;
+            }
+
+            .section-title h2 {
+                font-size: 24px;
+            }
+
+            .header-actions .btn-login span {
+                display: none;
+            }
+
+            .top-bar-left span:not(:first-child) {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-slider {
+                height: 350px;
+            }
+
+            .hero-content h1 {
+                font-size: 22px;
+            }
+
+            .hero-content .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-content .btn-group .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <span>&#128222; 313 628 5006</span>
+                <span>&#128231; info@servicarmelo.co</span>
+                <span>&#128197; Lun-Sáb: 7:00 AM - 6:00 PM</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="#" class="social-icon" aria-label="Facebook">f</a>
+                <a href="#" class="social-icon" aria-label="Instagram">ig</a>
+                <a href="#" class="social-icon" aria-label="WhatsApp">wp</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">
+                <div class="logo-icon">S</div>
+                <div>
+                    <div class="logo-text">Servi<span>Carmelo</span></div>
+                    <span class="logo-sub">Centro de Servicio Automotriz</span>
+                </div>
+            </a>
+
+            <nav class="nav" id="mainNav">
+                <a href="#" class="active">Inicio</a>
+                <div class="has-dropdown">
+                    <a href="#">Productos y servicios &#9662;</a>
+                    <div class="dropdown">
+                        <a href="#">Lubricantes</a>
+                        <a href="#">Baterias</a>
+                        <a href="#">Llantas</a>
+                        <a href="#">Servicios</a>
+                        <a href="#">Accesorios</a>
+                    </div>
+                </div>
+                <a href="#">Contacto</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="#" title="Buscar">&#128269;</a>
+                <a href="#" title="Lista de deseos">&#9825;</a>
+                <button class="btn-login" onclick="alert('Funcionalidad de inicio de sesión')">&#128100; <span>Ingresar</span></button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menú">&#9776;</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SLIDER -->
+    <section class="hero-slider" id="heroSlider">
+        <div class="hero-slide active">
+            <div class="hero-content">
+                <h1>Calidad y Servicio Automotriz en Sabaneta</h1>
+                <p>Cuidamos tu vehículo con la experiencia y el compromiso que mereces.</p>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-primary">Ver nuestros servicios</a>
+                    <a href="#" class="btn btn-outline">Agenda tu cita</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-slide">
+            <div class="hero-content">
+                <h1>Servicarmelo</h1>
+                <p>Tu aliado de confianza en el cuidado automotriz.</p>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-primary">Contáctanos</a>
+                    <a href="#" class="btn btn-outline">Agenda tu cita</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-slide">
+            <div class="hero-content">
+                <h1>¿Tu vehículo necesita atención técnica?</h1>
+                <p>Expertos en mantenimiento preventivo y correctivo. ¡Estamos en Sabaneta!</p>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-primary">Agenda tu cita</a>
+                    <a href="#" class="btn btn-outline">Ver servicios</a>
+                </div>
+            </div>
+        </div>
+        <div class="slider-dots">
+            <button class="active" data-slide="0"></button>
+            <button data-slide="1"></button>
+            <button data-slide="2"></button>
+        </div>
+    </section>
+
+    <!-- BLOG SECTION -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="section-title">
+                <div class="tag">Blog</div>
+                <h2>Guía del Automovilista: Tips y Recomendaciones</h2>
+                <p>Consejos prácticos para mantener tu vehículo en óptimas condiciones</p>
+            </div>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-card-img" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                        <span class="cat-badge">Mantenimiento</span>
+                    </div>
+                    <div class="blog-card-body">
+                        <div class="date">Junio 15, 2026</div>
+                        <h3>¿Preventivo o correctivo? La diferencia que puede salvar tu motor</h3>
+                        <p>Descubre por qué invertir en el mantenimiento preventivo es la forma más inteligente de cuidar tu vehículo.</p>
+                        <a href="#" class="read-more">Leer más &#8594;</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-card-img" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                        <span class="cat-badge">Consejos</span>
+                    </div>
+                    <div class="blog-card-body">
+                        <div class="date">Junio 8, 2026</div>
+                        <h3>Más allá del aceite: 3 líquidos vitales para la vida de tu motor</h3>
+                        <p>No todo es aceite. Aprende a identificar y mantener los 3 líquidos esenciales que aseguran el rendimiento.</p>
+                        <a href="#" class="read-more">Leer más &#8594;</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-card-img" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                        <span class="cat-badge">Seguridad</span>
+                    </div>
+                    <div class="blog-card-body">
+                        <div class="date">Junio 1, 2026</div>
+                        <h3>Frenos y llantas: 3 señales de alerta que no puedes ignorar</h3>
+                        <p>No ignores las señales de tu vehículo. Aprende a identificar cuándo es el momento crítico para actuar.</p>
+                        <a href="#" class="read-more">Leer más &#8594;</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-card-img" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">
+                        <span class="cat-badge">Innovación</span>
+                    </div>
+                    <div class="blog-card-body">
+                        <div class="date">Mayo 25, 2026</div>
+                        <h3>¿Estás pensando en comprar un carro eléctrico? 5 puntos clave</h3>
+                        <p>Si estás considerando dar el salto a la movilidad eléctrica, aquí tienes los puntos clave antes de decidir.</p>
+                        <a href="#" class="read-more">Leer más &#8594;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services-section">
+        <div class="container">
+            <div class="section-title">
+                <div class="tag">Nuestros Servicios</div>
+                <h2>Soluciones Profesionales para tu Vehículo</h2>
+                <p>Ofrecemos una amplia gama de servicios automotrices con los más altos estándares de calidad</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon">&#9881;</div>
+                    <h3>Alineación Automóvil</h3>
+                    <div class="category">Servicios / Alineación</div>
+                    <p>Optimiza el rendimiento de tu automóvil con nuestro servicio de alineación y balanceo.</p>
+                    <div class="price-label">Inicia sesión para ver los precios</div>
+                    <button class="btn-service">Ver detalle &#8594;</button>
+                </div>
+                <div class="service-card">
+                    <div class="icon">&#9881;</div>
+                    <h3>Alineación Camioneta</h3>
+                    <div class="category">Servicios / Alineación</div>
+                    <p>Servicio de alineación para camionetas, diseñado para garantizar un rendimiento óptimo.</p>
+                    <div class="price-label">Inicia sesión para ver los precios</div>
+                    <button class="btn-service">Ver detalle &#8594;</button>
+                </div>
+                <div class="service-card">
+                    <div class="icon">&#10052;</div>
+                    <h3>Mantenimiento Aire Acondicionado</h3>
+                    <div class="category">Aire acondicionado</div>
+                    <p>Mantenimiento de aire acondicionado para un ambiente fresco y agradable en cada viaje.</p>
+                    <div class="price-label">Inicia sesión para ver los precios</div>
+                    <button class="btn-service">Ver detalle &#8594;</button>
+                </div>
+                <div class="service-card">
+                    <div class="icon">&#128661;</div>
+                    <h3>Mantenimiento Frenos</h3>
+                    <div class="category">Frenos</div>
+                    <p>El sistema de frenos es el componente de seguridad activa más importante de tu vehículo.</p>
+                    <div class="price-label">Inicia sesión para ver los precios</div>
+                    <button class="btn-service">Ver detalle &#8594;</button>
+                </div>
+                <div class="service-card">
+                    <div class="icon">&#128187;</div>
+                    <h3>Servicio de Escáner</h3>
+                    <div class="category">Diagnóstico</div>
+                    <p>Descubre qué le pasa a tu auto antes de que sea tarde. Diagnóstico computarizado profesional.</p>
+                    <div class="price-label">Inicia sesión para ver los precios</div>
+                    <button class="btn-service">Ver detalle &#8594;</button>
+                </div>
+                <div class="service-card">
+                    <div class="icon">&#128295;</div>
+                    <h3>Alineación, Rotación y Balanceo</h3>
+                    <div class="category">Servicios</div>
+                    <p>Paquete completo de alineación, rotación y balanceo para automóvil y camioneta.</p>
+                    <div class="price-label">Inicia sesión para ver los precios</div>
+                    <button class="btn-service">Ver detalle &#8594;</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-title">
+                <div class="tag">Testimonios</div>
+                <h2>Lo Que Dicen Nuestros Clientes</h2>
+                <p>La satisfacción de nuestros clientes es nuestra mejor garantía</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+                    <blockquote>"Traje mi camioneta para un servicio de restauración de partes negras y el resultado superó mis expectativas. Parecía que acababa de salir del concesionario. ¡Muy profesionales!"</blockquote>
+                    <div class="author">
+                        <div class="author-avatar">PR</div>
+                        <div class="author-info">
+                            <strong>Pedro Ramirez</strong>
+                            <span>Arquitecto</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+                    <blockquote>"El mantenimiento integral que le hicieron a mi vehículo me dio mucha tranquilidad. Son honestos con los diagnósticos y los precios son justos. Recomendados al 100%"</blockquote>
+                    <div class="author">
+                        <div class="author-avatar">SR</div>
+                        <div class="author-info">
+                            <strong>Sofía Ramírez</strong>
+                            <span>Ejecutiva de Ventas</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+                    <blockquote>"Me sorprendió la calidad técnica del taller. Me explicaron paso a paso qué le estaban haciendo a mi vehículo y los tiempos de entrega se cumplieron a la perfección."</blockquote>
+                    <div class="author">
+                        <div class="author-avatar">AD</div>
+                        <div class="author-info">
+                            <strong>Andrés Felipe Duque</strong>
+                            <span>Administrador de Empresas</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+                    <blockquote>"Es difícil encontrar un taller mecánico que te explique todo con claridad. La atención en Servicarmelo es excelente y el agendamiento de citas es muy eficiente."</blockquote>
+                    <div class="author">
+                        <div class="author-avatar">LG</div>
+                        <div class="author-info">
+                            <strong>Laura Gómez</strong>
+                            <span>Docente</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+                    <blockquote>"Debo ser sincero, me hicieron esperar media hora más de lo previsto y me enfadé; pero al ver mi carro terminado y mejor que nuevo, tuve que disculparme. La calidad del trabajo hace que la espera valga la pena."</blockquote>
+                    <div class="author">
+                        <div class="author-avatar">JH</div>
+                        <div class="author-info">
+                            <strong>Jorge Henao</strong>
+                            <span>Contador</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>¿Listo para darle a tu vehículo el cuidado que merece?</h2>
+            <p>Agenda tu cita hoy y descubre por qué somos la elección preferida en Sabaneta</p>
+            <a href="#" class="btn">&#128197; Separar mi cita</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#" class="logo" style="margin-bottom: 15px; display: inline-flex;">
+                        <div class="logo-icon" style="width: 40px; height: 40px; font-size: 18px;">S</div>
+                        <div>
+                            <div class="logo-text" style="font-size: 18px; color: var(--white);">Servi<span>Carmelo</span></div>
+                        </div>
+                    </a>
+                    <p>Tu aliado de confianza en el cuidado automotriz en Sabaneta, Antioquia. Con años de experiencia y compromiso con la calidad.</p>
+                </div>
+                <div>
+                    <h4>Enlaces rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">&#8594; Inicio</a></li>
+                        <li><a href="#">&#8594; Productos y servicios</a></li>
+                        <li><a href="#">&#8594; Lubricantes</a></li>
+                        <li><a href="#">&#8594; Baterías</a></li>
+                        <li><a href="#">&#8594; Llantas</a></li>
+                        <li><a href="#">&#8594; Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Horarios</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">&#128338; Lunes a Viernes: 7:00 AM - 6:00 PM</a></li>
+                        <li><a href="#">&#128338; Sábados: 7:00 AM - 6:00 PM</a></li>
+                        <li><a href="#">&#128338; Domingos: Cerrado</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contacto</h4>
+                    <ul class="contact-info">
+                        <li><span class="icon">&#128205;</span> Sabaneta, Antioquia, Colombia</li>
+                        <li><span class="icon">&#128222;</span> 313 628 5006</li>
+                        <li><span class="icon">&#128231;</span> info@servicarmelo.co</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>servicarmelo.co &copy; 2026 &mdash; Todos los derechos reservados</span>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook">fb</a>
+                    <a href="#" aria-label="Instagram">ig</a>
+                    <a href="#" aria-label="WhatsApp">wa</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLOATING BUTTON -->
+    <a href="https://wa.me/573136285006" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+        &#128172;
+    </a>
+
+    <script>
+        // MOBILE MENU TOGGLE
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('mainNav').classList.toggle('open');
+        });
+
+        // DROPDOWN ON MOBILE
+        document.querySelectorAll('.has-dropdown > a').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    this.parentElement.classList.toggle('open');
+                }
+            });
+        });
+
+        // HERO SLIDER
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.slider-dots button');
+        let currentSlide = 0;
+        let slideInterval;
+
+        function goToSlide(index) {
+            slides.forEach(function(s, i) {
+                s.classList.toggle('active', i === index);
+            });
+            dots.forEach(function(d, i) {
+                d.classList.toggle('active', i === index);
+            });
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            goToSlide((currentSlide + 1) % slides.length);
+        }
+
+        function startSlider() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function stopSlider() {
+            clearInterval(slideInterval);
+        }
+
+        dots.forEach(function(dot) {
+            dot.addEventListener('click', function() {
+                stopSlider();
+                goToSlide(parseInt(this.getAttribute('data-slide')));
+                startSlider();
+            });
+        });
+
+        startSlider();
+    </script>
+</body>
+</html>
